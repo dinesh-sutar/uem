@@ -50,6 +50,7 @@ public class HttpClientService {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static List<Map> get(String url) {
 
         try {
@@ -80,6 +81,7 @@ public class HttpClientService {
         return List.of();
     }
 
+    @SuppressWarnings("unchecked")
     public static List<String> getListString(String url) {
 
         try {
