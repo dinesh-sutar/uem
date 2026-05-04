@@ -18,7 +18,7 @@ public class CommandService {
 
                 try {
 
-                    String url = "http://192.168.1.11:8081/devices/commands/" + macId;
+                    String url = "http://192.168.1.13:8081/devices/commands/" + macId;
 
                     List<Map> commands = HttpClientService.get(url);
 
@@ -46,21 +46,34 @@ public class CommandService {
 
     private static void execute(String cmd) throws Exception {
 
+        String os = System.getProperty("os.name").toLowerCase();
+
         switch (cmd) {
 
             case "RESTART":
-                Runtime.getRuntime()
-                        .exec("shutdown -r -t 0");
+                if (os.contains("win")) {
+                    Runtime.getRuntime().exec("shutdown -r -t 0");
+                } else if (os.contains("linux") || os.contains("mac")) {
+                    Runtime.getRuntime().exec("shutdown -r now");
+                }
                 break;
 
             case "SHUTDOWN":
-                Runtime.getRuntime()
-                        .exec("shutdown -s -t 0");
+                if (os.contains("win")) {
+                    Runtime.getRuntime().exec("shutdown -s -t 0");
+                } else if (os.contains("linux") || os.contains("mac")) {
+                    Runtime.getRuntime().exec("shutdown -h now");
+                }
                 break;
 
             case "SLEEP":
-                Runtime.getRuntime()
-                        .exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+                if (os.contains("win")) {
+                    Runtime.getRuntime().exec("rundll32.exe powrprof.dll,SetSuspendState 0,1,0");
+                } else if (os.contains("linux")) {
+                    Runtime.getRuntime().exec("systemctl suspend");
+                } else if (os.contains("mac")) {
+                    Runtime.getRuntime().exec("pmset sleepnow");
+                }
                 break;
         }
     }
@@ -106,7 +119,7 @@ public class CommandService {
             body.put("status", status);
 
             HttpClientService.post(
-                    "http://192.168.1.11:8081/devices/command/update",
+                    "http://192.168.1.13:8081/devices/command/update",
                     body);
 
         } catch (Exception e) {
