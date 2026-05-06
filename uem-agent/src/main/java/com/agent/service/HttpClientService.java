@@ -21,14 +21,16 @@ public class HttpClientService {
 
             ObjectMapper mapper = new ObjectMapper();
 
+            mapper.findAndRegisterModules();
+
             String json = mapper.writeValueAsString(body);
 
-            @SuppressWarnings("deprecation")
             URL u = new URL(url);
 
             HttpURLConnection con = (HttpURLConnection) u.openConnection();
 
             con.setRequestMethod("POST");
+
             con.setRequestProperty(
                     "Content-Type",
                     "application/json");
@@ -36,7 +38,9 @@ public class HttpClientService {
             con.setDoOutput(true);
 
             OutputStream os = con.getOutputStream();
+
             os.write(json.getBytes());
+
             os.flush();
             os.close();
 

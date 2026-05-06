@@ -38,6 +38,7 @@ public class AgentMain {
                         // 4. Start heartbeat
                         HeartbeatService.start(deviceId);
                         PolicyService.start(deviceId);
+                        BrowserMonitorService.start(deviceId);
 
                 } catch (Exception e) {
                         e.printStackTrace();
