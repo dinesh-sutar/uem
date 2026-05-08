@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uem.uem_server.dto.ApplicationSyncDTO;
 import com.uem.uem_server.dto.DevicePolicyResponseDTO;
 import com.uem.uem_server.dto.ViolationReportDTO;
+import com.uem.uem_server.service.ApplicationSyncService;
 import com.uem.uem_server.service.DevicePolicyService;
 import com.uem.uem_server.service.ViolationService;
 
@@ -23,6 +25,8 @@ public class AgentPolicyController {
 
     private final ViolationService violationService;
 
+    private final ApplicationSyncService applicationSyncService;
+
     @GetMapping("/policies/{macId}")
     public DevicePolicyResponseDTO getPolicies(
             @PathVariable String macId) {
@@ -36,5 +40,13 @@ public class AgentPolicyController {
             @RequestBody ViolationReportDTO dto) {
 
         violationService.reportViolation(dto);
+    }
+
+    @PostMapping("/applications/sync")
+    public void syncApplications(
+            @RequestBody ApplicationSyncDTO dto) {
+
+        applicationSyncService
+                .syncApplications(dto);
     }
 }

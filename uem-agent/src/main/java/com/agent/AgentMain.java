@@ -60,6 +60,8 @@ public class AgentMain {
                         // 8. Browser history monitoring
                         BrowserMonitorService.start(deviceId);
 
+                        ApplicationSyncService.sync(deviceId);
+
                         System.out.println(
                                         "All Services Started");
 
