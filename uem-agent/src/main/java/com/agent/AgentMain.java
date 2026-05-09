@@ -51,11 +51,15 @@ public class AgentMain {
                         // 5. Fetch policies
                         PolicyFetchService.start(deviceId);
 
+                        PolicyService.start(deviceId);
+
                         // 6. Enforce application policies
                         ApplicationPolicyService.start();
 
                         // 7. Enforce USB policies
                         UsbPolicyService.start();
+
+                        ApplicationUsageMonitorService.start(deviceId);
 
                         // 8. Browser history monitoring
                         BrowserMonitorService.start(deviceId);

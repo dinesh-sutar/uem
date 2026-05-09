@@ -42,7 +42,7 @@ public class MetricsService {
                                                         SystemInfoService.getBytesReceived());
 
                                         HttpClientService.post(
-                                                        "http://192.168.1.13:8081/metrics",
+                                                        "http://192.168.1.9:8081/metrics",
                                                         body);
 
                                         Thread.sleep(30000);

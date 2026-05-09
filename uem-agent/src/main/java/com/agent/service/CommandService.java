@@ -18,7 +18,7 @@ public class CommandService {
 
                 try {
 
-                    String url = "http://192.168.1.13:8081/devices/commands/" + macId;
+                    String url = "http://192.168.1.9:8081/devices/commands/" + macId;
 
                     List<Map> commands = HttpClientService.get(url);
 
@@ -119,7 +119,7 @@ public class CommandService {
             body.put("status", status);
 
             HttpClientService.post(
-                    "http://192.168.1.13:8081/devices/command/update",
+                    "http://192.168.1.9:8081/devices/command/update",
                     body);
 
         } catch (Exception e) {
