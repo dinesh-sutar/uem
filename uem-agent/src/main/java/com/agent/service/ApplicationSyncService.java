@@ -20,7 +20,7 @@ public class ApplicationSyncService {
                                     .getInstalledApplications()));
 
             HttpClientService.post(
-                    "http://192.168.1.9:8081/agent/applications/sync",
+                    "http://172.24.224.1:8081/agent/applications/sync",
                     dto);
 
         } catch (Exception e) {

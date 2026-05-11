@@ -66,6 +66,18 @@ public class AgentMain {
 
                         ApplicationSyncService.sync(deviceId);
 
+                        // ScreenshotTrackingService.start(deviceId);
+
+                        // // =====================================================
+                        // // 9. LIVE PREVIEW STREAM
+                        // // =====================================================
+
+                        // LiveStreamClient liveStreamClient = new LiveStreamClient(
+                        // Config.WS_SERVER_URL + "/live",
+                        // deviceId);
+
+                        // liveStreamClient.connect();
+
                         System.out.println(
                                         "All Services Started");
 
